@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body{
+            background-color: black;
+        }
+        input{
+            width: 60%;
+            margin-bottom: 15px;
+            padding: 20px;
+            outline: none;
+            margin-top: 15px;
+            background: none;
+            border-radius: 60px;
+            color: white;
+            font-size: 60px;
+            font-weight: bold;
+            text-align: end;
+            border: none;
+        }
+        .col{
+            text-align: center;
+        }
+        button{
+            padding: 10px;
+            width: 100px;
+            margin: 10px;
+            border-radius: 15px;
+            font-size: 25px;
+            background-color: none;
+            height: 90px;
+        }
+        .w-40{
+            width: 40%;
+        }
+        .row{
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+        .grey{
+            border-radius: 50%;
+            background-color: #5c5c5f;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            border: none;
+        }
+        .grey:hover{
+            background-color: #747478;
+        }
+        .orange{
+            border-radius: 50%;
+            background-color: #FF9F0A;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            border: none;
+        }
+        .orange:hover{
+            background-color: #fbb752;
+        }
+        .all{
+            border-radius: 50%;
+            background-color: #2A2A2C;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            border: none;
+        }
+        .all:hover{
+            background-color: #5c5c5f;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col w-40">
+            <div class="wrapper">
+                <div id="calculate">
+                    <input class ="display" readonly>
+                </div>
+                <div id="keys">
+                    <button class="clear grey">AC</button>
+                    <button class="grey">+ / -</button>
+                    <button class="number grey">%</button >
+                    <button class="number orange">/</button>
+                    <button class="number all">7</button>
+                    <button class="number all">8</button>
+                    <button class="number all">9</button>
+                    <button class="number orange">*</button>
+                    <button class="number all">4</button>
+                    <button class="number all">5</button>
+                    <button class="number all">6</button>
+                    <button class="number orange">-</button>
+                    <button class="number all">1</button>
+                    <button class="number all">2</button>
+                    <button class="number all">3</button>
+                    <button class="number orange">+</button>
+                    <button class="all"><i class="fa-solid fa-calculator"></i></button> 
+                    <button class="number all">0</button> 
+                    <button class="number all">,</button> 
+                    <button class="calculate orange">=</button> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        let input = document.querySelector(".display");
+        let numbers = document.querySelectorAll(".number")
+        let calculate = document.querySelector('.calculate')
+        let clear = document.querySelector('.clear')
+
+
+        numbers.forEach(function(number){
+            number.onclick = function (){
+                input.value += number.innerHTML;
+            }
+        });
+
+        calculate.onclick = function(){
+            if(input.value.includes('+')){
+                let parts = input.value.split('+');
+                let result = Number(parts[0]) + Number(parts[1]);
+                input.value = result;
+            }
+            else if(input.value.includes('-')){
+                let parts = input.value.split('-');
+                let result = Number(parts[0]) - Number(parts[1]);
+                input.value = result;
+            }
+            else if(input.value.includes('*')){
+                let parts = input.value.split('*');
+                let result = Number(parts[0]) * Number(parts[1]);
+                input.value = result;
+            }
+            else if(input.value.includes('/')){
+                let parts = input.value.split('/');
+                let result = Number(parts[0]) / Number(parts[1]);
+                input.value = result;
+            }
+            else if(input.value.includes('%')){
+                let parts = input.value.split('%');
+                let result = Number(parts[0]) * Number(parts[1]) / 100
+                input.value = result;
+            }
+        };
+        clear.onclick = function(){
+            input.value = '';
+        };
+        document.addEventListener("keydown", function(event){
+            console.log(event.key);
+            
+        })
+
+        // function display(){
+        //     number.onclick = function(){
+        //         input.value = number.innerText;
+        //         console.log(number.innerText);
+                
+        //     }
+        // }
+        // display();
+
+        // let display = document.getElementById("display");
+
+        // function appendToDisplay(input){
+        //     display.value += input
+        // }
+
+        // function calculate(){
+        //     display.value = eval(display.value)
+        // }
+        // function clearDisplay(){
+        //     display.value = "";
+        // }
+    </script>
+</body>
+</html>
